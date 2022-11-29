@@ -18,17 +18,18 @@ knm = ω * sqrt(µ0 * ϵ0 * ϵr)
 r = 1
 V0 = 1
 
-#Funkcije
-Fnm(ρ) = -bessely(n+1,knm*a)*besselj(n,knm*ρ)+besselj(n+1,knm*a)*bessely(n,knm*ρ)
+#Funkcija
+Fnm(ρ) = (bessely(n-1,knm*a)-bessely(n+1,knm*a))/2 * besselj(n,knm*ρ) -
+         (besselj(n-1,knm*a)-besselj(n+1,knm*a))/2 * bessely(n,knm*ρ)
 
-#Jednadzba 1
+#Funkcija 1
 function Eθ(θ, ϕ = 0) 
     -(j)^n * (ℯ^(-j * k0 * r) / r) * (k0 * V0 / 2 * Fnm(c)) * cos(n * ϕ)
     *((b * Fnm(b) * (besselj(n-1, k0 * b * sin(θ)) - besselj(n+1, k0 * b * sin(θ))))
     -a * Fnm(a) * (besselj(n-1, k0 * a * sin(θ)) - besselj(n+1, k0 * a * sin(θ))))
     end
 
-#Jednadzba 2
+#Funkcija 2
 function Eϕ(θ, ϕ = 90) 
     -(j)^n * (ℯ^(-j * k0 * r) / r) * (k0 * V0 / 2 * Fnm(c)) * cos(θ) * sin(n * ϕ)
     *((b * Fnm(b) * (besselj(n-1, k0 * b * sin(θ)) + besselj(n+1, k0 * b * sin(θ))))
@@ -100,6 +101,13 @@ k56 = plot(k5, k6, layout=(2,1), legend = false)
 p56 = plot(p5, p6, layout=(2,1), legend = false)
 k78 = plot(k7, k8, layout=(2,1), legend = false)
 p78 = plot(p7, p8, layout=(2,1), legend = false)
+
+
+display(plot(k12,p12))
+display(plot(k34,p34))
+display(plot(k56,p56))
+display(plot(k78,p78))
+
 
 #=
 png(k12,raw"C:\Users\gabri\Downloads\k12")
