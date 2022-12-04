@@ -30,13 +30,13 @@ function Eθ(θ, ϕ = 0)
     end
 
 #Funkcija 2
-function Eϕ(θ, ϕ = 90) 
+function Eϕ(θ, ϕ = π/2) 
     -(j)^n * (ℯ^(-j * k0 * r) / r) * (k0 * V0 / 2 * Fnm(c)) * cos(θ) * sin(n * ϕ)
     *((b * Fnm(b) * (besselj(n-1, k0 * b * sin(θ)) + besselj(n+1, k0 * b * sin(θ))))
     -a * Fnm(a) * (besselj(n-1, k0 * a * sin(θ)) + besselj(n+1, k0 * a * sin(θ))))
     end
 
-    x = range(start=0,stop=90,length=10^4)
+    x = range(start=0,stop=π/2,length=10^4)
 
     EθMAX = maximum(Eθ,x)
     EϕMAX = maximum(Eϕ,x)
@@ -44,7 +44,7 @@ function Eϕ(θ, ϕ = 90)
     Eθn(θ) = 20 * log(abs(Eθ(θ))/abs(EθMAX))
     Eϕn(θ) = 20 * log(abs(Eϕ(θ))/abs(EϕMAX))
 
-    xplot = range(start=0,stop=90,length=10^3)
+    xplot = range(start=0,stop=π/2,length=10^3)
 
 begin
     #prvi primjer
@@ -102,12 +102,10 @@ p56 = plot(p5, p6, layout=(2,1), legend = false)
 k78 = plot(k7, k8, layout=(2,1), legend = false)
 p78 = plot(p7, p8, layout=(2,1), legend = false)
 
-
 display(plot(k12,p12))
 display(plot(k34,p34))
 display(plot(k56,p56))
 display(plot(k78,p78))
-
 
 #=
 png(k12,raw"C:\Users\gabri\Downloads\k12")
